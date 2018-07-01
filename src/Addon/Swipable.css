@@ -1,0 +1,35 @@
+.wrapper {
+  width: 100vw;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.content {
+  width: calc(100vw + 128px);
+  /* display: flex; */
+  /* flex-wrap: nowrap; */
+  background-color: #000;
+  /* -webkit-overflow-scrolling: touch; */
+  /* overflow-scrolling: touch; */
+}
+
+.main,
+.option1,
+.option2 {
+  display: inline-block;
+}
+
+.main {
+  width: 100vw;
+  color: #fff;
+}
+
+.option1 {
+  background-color: blue;
+  width: 64px;
+}
+
+.option2 {
+  background-color: red;
+  width: 64px;
+}
