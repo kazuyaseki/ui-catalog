@@ -2,45 +2,47 @@ import React from 'react';
 import './Swipable.css';
 
 export default class Swipable extends React.Component {
+  static Main = ({ children }) => <div className="main">{children}</div>;
+
   startPos = 0;
+
+  state = {
+    containerWidth: window.innerWidth
+  };
+
+  componentDidMount() {
+    this.setState({
+      containerWidth: window.innerWidth + this.hiddenElements.clientWidth
+    });
+  }
 
   handleTouchStart = event => {
     this.startPos = this.elem.getBoundingClientRect().x;
   };
 
-  handleTouchMove = event => {
-    //console.log(event.target);
-  };
-
   handleTouchEnd = event => {
     const endPos = this.elem.getBoundingClientRect().x;
     const toLeft = endPos > this.startPos;
-    console.log(
-      'ended at: ',
-      endPos,
-      ', direction:',
-      toLeft ? 'left' : 'right'
-    );
 
-    if (!toLeft) {
-      if (endPos < 0 && endPos > -64) {
-        this.wrapper.scrollTo(72, 0);
-      } else if (endPos <= -64) {
-        this.wrapper.scrollTo(136, 0);
-      }
+    if (toLeft) {
+      this.wrapper.scrollTo(0, 0);
     } else {
-      if (endPos < 0 && endPos > -64) {
-        this.wrapper.scrollTo(0, 0);
-      } else if (endPos <= -64) {
-        this.wrapper.scrollTo(72, 0);
-      }
+      this.wrapper.scrollTo(this.hiddenElements.clientWidth, 0);
     }
 
-    console.log(this.wrapper.scrollLeft);
-
-    // this.wrapper.scrollTo(20, 0);
-
-    //this.elem.scrollLeft = 0;
+    // if (!toLeft) {
+    //   if (endPos < 0 && endPos > -64) {
+    //     this.wrapper.scrollTo(72, 0);
+    //   } else if (endPos <= -64) {
+    //     this.wrapper.scrollTo(136, 0);
+    //   }
+    // } else {
+    //   if (endPos < 0 && endPos > -64) {
+    //     this.wrapper.scrollTo(0, 0);
+    //   } else if (endPos <= -64) {
+    //     this.wrapper.scrollTo(72, 0);
+    //   }
+    // }
   };
 
   render() {
@@ -48,18 +50,25 @@ export default class Swipable extends React.Component {
       <div ref={elem => (this.wrapper = elem)} className="wrapper">
         <div
           className="content"
+          style={{ width: `${this.state.containerWidth}px` }}
           ref={elem => (this.elem = elem)}
           onTouchStart={event => this.handleTouchStart(event)}
-          onTouchMove={event => this.handleTouchMove(event)}
           onTouchEnd={event => this.handleTouchEnd(event)}
         >
-          <div className="main" ref={elem => (this.main = elem)}>
-            ぼくドラえもん
+          <div className="main">{this.props.mainText}</div>
+          <div
+            className="hiddenElements"
+            ref={elem => (this.hiddenElements = elem)}
+          >
+            {this.props.rightContent.map(data => (
+              <button
+                className="button"
+                onClick={() => data.onClick(this.props.id)}
+              >
+                {data.text}
+              </button>
+            ))}
           </div>
-          <div className="option1" ref={elem => (this.option1 = elem)}>
-            確認
-          </div>
-          <div className="option2">削除</div>
         </div>
       </div>
     );

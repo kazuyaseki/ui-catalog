@@ -5,12 +5,22 @@
 }
 
 .content {
-  width: calc(100vw + 128px);
+  /* width: calc(100vw + 128px); */
   /* display: flex; */
   /* flex-wrap: nowrap; */
   background-color: #000;
   /* -webkit-overflow-scrolling: touch; */
   /* overflow-scrolling: touch; */
+}
+
+.hiddenElements {
+  display: inline-block;
+}
+
+.button {
+  height: 100%;
+  border: 1px solid #dcdcdc;
+  background-color: red;
 }
 
 .main,
@@ -22,14 +32,4 @@
 .main {
   width: 100vw;
   color: #fff;
-}
-
-.option1 {
-  background-color: blue;
-  width: 64px;
-}
-
-.option2 {
-  background-color: red;
-  width: 64px;
 }

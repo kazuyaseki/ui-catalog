@@ -13,5 +13,24 @@ storiesOf('Button', module)
   ));
 
 storiesOf('Swipable', module).add('with text', () => (
-  <Swipable>Hello Button</Swipable>
+  <Swipable
+    id={1}
+    mainText="メインだよ"
+    rightContent={[
+      {
+        text: '確認',
+        theme: '',
+        onClick: id => {
+          console.log(id + '確認');
+        }
+      },
+      {
+        text: '削除',
+        theme: '',
+        onClick: id => {
+          console.log(id + '削除');
+        }
+      }
+    ]}
+  />
 ));
