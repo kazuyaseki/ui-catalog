@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../src/atoms/Button';
 import Swipable from '../src/Addon/Swipable';
+import ListAppear from '../src/animation/ListAppear';
 
 storiesOf('Button', module)
   .add('with text', () => (
@@ -33,4 +34,10 @@ storiesOf('Swipable', module).add('with text', () => (
       }
     ]}
   />
+));
+
+const items = ['hoge', 'fuga', 'hogefuga'];
+
+storiesOf('ListAppear', module).add('default', () => (
+  <ListAppear items={items} />
 ));

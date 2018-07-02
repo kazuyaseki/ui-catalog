@@ -1,0 +1,36 @@
+ul {
+  width: 300px;
+  overflow: hidden;
+}
+li {
+  position: relative;
+  width: 400px;
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.button {
+  position: absolute;
+  width: 50px;
+  right: 0;
+}
+
+.animate {
+  animation-name: appear;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  /* animation-timing-function: cubic-bezier(0.24, 1.81, 0.44, 1.42); */
+  animation-iteration-count: 1;
+}
+
+@keyframes appear {
+  0% {
+    transform: translateX(100%);
+  }
+  70% {
+    transform: translateX(-110px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
