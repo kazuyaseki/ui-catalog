@@ -3,7 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../src/atoms/Button';
 import Swipable from '../src/Addon/Swipable';
+import PoseBasic, { PoseList } from '../src/animation/PoseBasic';
+import Example from '../src/animation/PosePlay';
 import ListAppear from '../src/animation/ListAppear';
+import TransitionTabs from '../src/animation/TransitionTabs';
 
 storiesOf('Button', module)
   .add('with text', () => (
@@ -40,4 +43,13 @@ const items = ['hoge', 'fuga', 'hogefuga'];
 
 storiesOf('ListAppear', module).add('default', () => (
   <ListAppear items={items} />
+));
+
+storiesOf('Pose Example', module)
+  .add('default', () => <Example />)
+  .add('ベーシック', () => <PoseBasic />)
+  .add('リスト', () => <PoseList />);
+
+storiesOf('Good to Great Animation', module).add('default', () => (
+  <TransitionTabs />
 ));
